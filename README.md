@@ -50,6 +50,8 @@ Switch from debug to info to see output when running script.
 **Input Validation**: Because the prompt explicitly listed that files will be in a certain format, we do not need validation here.
 However, if file formats and contents differ we could implement input validation (if board size is 0, if file is empty, etc).
 
+**Set Up Continuous Integration**: We could setup continuous integration through [GitHub Actions](https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-java-with-maven) to automatically build and test our Bounding Box code.
+
 ## Notable Trade-Offs
 
 **DFS vs. BFS**: We chose Breadth First Search (BFS) as our traversal algorithm because it is an iterative approach. In comparison
