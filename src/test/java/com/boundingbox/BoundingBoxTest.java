@@ -31,7 +31,7 @@ public class BoundingBoxTest {
     }
 
     /**
-     * Validate that we handle the expected IOExceptions
+     * Validate that we handle the expected IOException
      */
     @Test
     public void testProcess_IOException() {

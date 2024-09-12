@@ -15,7 +15,7 @@ import java.util.Queue;
  */
 public class MinBoundingBox {
     private final char[][] input;
-    private final List<BoxCoordinates> coordinates;
+    private final List<BoxCoordinates> minBoxCoordinates;
     private final int[][] DIRECTIONS = {{1,0},{-1,0},{0,1},{0,-1}};
     private final int INDEX_OFFSET = 1;
     private int minBounding = Integer.MAX_VALUE;
@@ -23,7 +23,7 @@ public class MinBoundingBox {
     private static final Logger logger = LoggerFactory.getLogger(MinBoundingBox.class);
 
     public MinBoundingBox(char[][] input){
-        this.coordinates = new ArrayList<>();
+        this.minBoxCoordinates = new ArrayList<>();
         this.input = input;
     }
 
@@ -35,7 +35,7 @@ public class MinBoundingBox {
         logger.debug("extracting minimum bounding boxes");
         extractMinBoundingBoxes(input);
         logger.debug("extracted minimum bounding boxes");
-        return coordinates;
+        return minBoxCoordinates;
     }
 
     /**
@@ -59,11 +59,11 @@ public class MinBoundingBox {
                     // update the coordinates list based off of the minBounding value
                     if(size < minBounding){
                         minBounding = size;
-                        this.coordinates.clear();
-                        this.coordinates.add(coordinates);
+                        minBoxCoordinates.clear();
+                        minBoxCoordinates.add(coordinates);
                     }
                     else if(size == minBounding){
-                        this.coordinates.add(coordinates);
+                        minBoxCoordinates.add(coordinates);
                     }
                 }
             }
