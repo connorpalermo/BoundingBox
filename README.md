@@ -1,4 +1,4 @@
-# MinBoundingBox Usage
+# BoundingBox Usage
 
 To use the minimum bounding box tool, follow these steps:
 

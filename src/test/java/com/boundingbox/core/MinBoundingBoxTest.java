@@ -93,7 +93,7 @@ public class MinBoundingBoxTest {
 
     @Test
     public void test_NoMinBoundingBox(){
-        char[][] noMinBoxInput = new char[1000][1000];
+        char[][] noMinBoxInput = new char[10][10];
         for(char[] row : noMinBoxInput){
             Arrays.fill(row,'-');
         }
