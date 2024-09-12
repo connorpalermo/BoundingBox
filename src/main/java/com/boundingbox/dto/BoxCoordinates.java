@@ -17,15 +17,15 @@ public class BoxCoordinates {
     private int bottomY;
 
     @Override
-    public String toString(){
+    public String toString() {
         return "(" + topX + "," + topY + ")" + "(" + bottomX + "," + bottomY + ")";
     }
 
-    public void incrementByOffset(int offset){
-        topX+=offset;
-        topY+=offset;
-        bottomX+=offset;
-        bottomY+=offset;
+    public void incrementByOffset(int offset) {
+        topX += offset;
+        topY += offset;
+        bottomX += offset;
+        bottomY += offset;
     }
 
 }

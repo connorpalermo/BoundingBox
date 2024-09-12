@@ -3,6 +3,7 @@ package com.boundingbox;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayOutputStream;
@@ -42,7 +43,7 @@ public class BoundingBoxTest {
             }
 
             @Override
-            public void close() throws IOException{
+            public void close() throws IOException {
                 throw new IOException("Test IOException");
             }
         };

@@ -7,28 +7,27 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class MinBoundingBoxTest {
     private static final char[][] VALID_INPUT_ONE_MIN_BOX = {
-            {'*', '*', '-', '-', '-', '-', '-', '-','-','*', '*', '*'},
-            {'-', '*', '-', '-', '*', '*', '-', '-', '*', '*', '*','-'},
-            {'-', '-', '-', '-', '-', '*', '*', '*', '-', '-', '*','*'},
-            {'-', '-', '-', '-', '-', '-', '-','*', '*', '*', '-', '-'}
+            {'*', '*', '-', '-', '-', '-', '-', '-', '-', '*', '*', '*'},
+            {'-', '*', '-', '-', '*', '*', '-', '-', '*', '*', '*', '-'},
+            {'-', '-', '-', '-', '-', '*', '*', '*', '-', '-', '*', '*'},
+            {'-', '-', '-', '-', '-', '-', '-', '*', '*', '*', '-', '-'}
     };
 
     private static final char[][] VALID_INPUT_MULTIPLE_MIN_BOXES = {
-            {'*', '*', '-', '-', '-', '-', '-', '-','-','*', '*', '*'},
-            {'-', '*', '-', '-', '-', '*', '-', '-', '*', '*', '*','-'},
-            {'-', '-', '-', '-', '-', '*', '*', '-', '-', '-', '*','*'},
-            {'-', '-', '-', '-', '-', '-', '-','*', '*', '*', '-', '-'}
+            {'*', '*', '-', '-', '-', '-', '-', '-', '-', '*', '*', '*'},
+            {'-', '*', '-', '-', '-', '*', '-', '-', '*', '*', '*', '-'},
+            {'-', '-', '-', '-', '-', '*', '*', '-', '-', '-', '*', '*'},
+            {'-', '-', '-', '-', '-', '-', '-', '*', '*', '*', '-', '-'}
     };
 
     private static final char[][] VALID_INPUT_EDGE_CASE_MIN_BOXES = {
-            {'-', '*', '*', '*', '-', '-', '-', '-','-','*', '*', '*'},
-            {'-', '*', '-', '-', '*', '*', '-', '-', '*', '*', '*','-'},
-            {'-', '-', '-', '-', '-', '*', '*', '-', '-', '-', '*','*'},
-            {'-', '-', '-', '-', '-', '-', '*','*', '*', '*', '-', '-'}
+            {'-', '*', '*', '*', '-', '-', '-', '-', '-', '*', '*', '*'},
+            {'-', '*', '-', '-', '*', '*', '-', '-', '*', '*', '*', '-'},
+            {'-', '-', '-', '-', '-', '*', '*', '-', '-', '-', '*', '*'},
+            {'-', '-', '-', '-', '-', '-', '*', '*', '*', '*', '-', '-'}
     };
 
     private static final char[][] VALID_INPUT_SINGLE_COORDINATE_MIN_BOX = {
@@ -39,29 +38,31 @@ public class MinBoundingBoxTest {
     };
 
     @Test
-    public void test_OneMinBoundingBox(){
-        BoxCoordinates coordinate = new BoxCoordinates(1,1,2,2);
+    public void test_OneMinBoundingBox() {
+        BoxCoordinates coordinate = new BoxCoordinates(1, 1, 2, 2);
         MinBoundingBox minBoundingBox = new MinBoundingBox(VALID_INPUT_ONE_MIN_BOX);
         List<BoxCoordinates> coordinates = minBoundingBox.process();
 
         Assertions.assertEquals(1, coordinates.size());
-        Assertions.assertTrue(equalCoordinates(coordinates.get(0),coordinate));
+        Assertions.assertTrue(equalCoordinates(coordinates.get(0), coordinate),
+                () -> "expected: " + coordinate + ", actual: " + coordinates.get(0));
     }
 
     @Test
-    public void test_MultipleMinBoundingBox(){
+    public void test_MultipleMinBoundingBox() {
         List<BoxCoordinates> expectedCoordinates = new ArrayList<>();
-        expectedCoordinates.add(new BoxCoordinates(1,1,2,2));
-        expectedCoordinates.add(new BoxCoordinates(2,6,3,7));
-        expectedCoordinates.add(new BoxCoordinates(4,8,4,10));
+        expectedCoordinates.add(new BoxCoordinates(1, 1, 2, 2));
+        expectedCoordinates.add(new BoxCoordinates(2, 6, 3, 7));
+        expectedCoordinates.add(new BoxCoordinates(4, 8, 4, 10));
         MinBoundingBox minBoundingBox = new MinBoundingBox(VALID_INPUT_MULTIPLE_MIN_BOXES);
         List<BoxCoordinates> coordinates = minBoundingBox.process();
 
         Assertions.assertEquals(3, coordinates.size());
-        IntStream.range(0,coordinates.size())
-                .forEach(i ->
-                Assertions.assertTrue(
-                        equalCoordinates(coordinates.get(i),expectedCoordinates.get(i))));
+        for (int i = 0; i < coordinates.size(); i++) {
+            Assertions.assertTrue(
+                    equalCoordinates(coordinates.get(i), expectedCoordinates.get(i)),
+                    "Mismatch at index " + i);
+        }
     }
 
     /**
@@ -72,30 +73,32 @@ public class MinBoundingBoxTest {
      * the current coordinates.
      */
     @Test
-    public void test_EdgeCaseMinBoundingBox(){
-        BoxCoordinates coordinate = new BoxCoordinates(1,2,2,2);
+    public void test_EdgeCaseMinBoundingBox() {
+        BoxCoordinates coordinate = new BoxCoordinates(1, 2, 2, 2);
         MinBoundingBox minBoundingBox = new MinBoundingBox(VALID_INPUT_EDGE_CASE_MIN_BOXES);
         List<BoxCoordinates> coordinates = minBoundingBox.process();
 
         Assertions.assertEquals(1, coordinates.size());
-        Assertions.assertTrue(equalCoordinates(coordinates.get(0),coordinate));
+        Assertions.assertTrue(equalCoordinates(coordinates.get(0), coordinate),
+                () -> "expected: " + coordinate + ", actual: " + coordinates.get(0));
     }
 
     @Test
-    public void test_SingleCoordinateMinBoundingBox(){
-        BoxCoordinates coordinate = new BoxCoordinates(2,3,2,3);
+    public void test_SingleCoordinateMinBoundingBox() {
+        BoxCoordinates coordinate = new BoxCoordinates(2, 3, 2, 3);
         MinBoundingBox minBoundingBox = new MinBoundingBox(VALID_INPUT_SINGLE_COORDINATE_MIN_BOX);
         List<BoxCoordinates> coordinates = minBoundingBox.process();
 
         Assertions.assertEquals(1, coordinates.size());
-        Assertions.assertTrue(equalCoordinates(coordinate,coordinates.get(0)));
+        Assertions.assertTrue(equalCoordinates(coordinate, coordinates.get(0)),
+                () -> "expected: " + coordinate + ", actual: " + coordinates.get(0));
     }
 
     @Test
-    public void test_NoMinBoundingBox(){
+    public void test_NoMinBoundingBox() {
         char[][] noMinBoxInput = new char[10][10];
-        for(char[] row : noMinBoxInput){
-            Arrays.fill(row,'-');
+        for (char[] row : noMinBoxInput) {
+            Arrays.fill(row, '-');
         }
         MinBoundingBox minBoundingBox = new MinBoundingBox(noMinBoxInput);
         List<BoxCoordinates> coordinates = minBoundingBox.process();
@@ -105,15 +108,16 @@ public class MinBoundingBoxTest {
 
     @Test
     public void test_LargeBoundingBox() {
-        BoxCoordinates coordinate = new BoxCoordinates(1,1,1000,1000);
+        BoxCoordinates coordinate = new BoxCoordinates(1, 1, 1000, 1000);
         char[][] largeInput = new char[1000][1000];
-        for(char[] row : largeInput){
+        for (char[] row : largeInput) {
             Arrays.fill(row, '*');
         }
         MinBoundingBox minBoundingBox = new MinBoundingBox(largeInput);
         List<BoxCoordinates> coordinates = minBoundingBox.process();
         Assertions.assertEquals(1, coordinates.size());
-        Assertions.assertTrue(equalCoordinates(coordinate,coordinates.get(0)));
+        Assertions.assertTrue(equalCoordinates(coordinate, coordinates.get(0)),
+                () -> "expected: " + coordinate + ", actual: " + coordinates.get(0));
     }
 
     @Test
@@ -124,7 +128,7 @@ public class MinBoundingBoxTest {
         Assertions.assertEquals(0, coordinates.size());
     }
 
-    private boolean equalCoordinates(BoxCoordinates b1, BoxCoordinates b2){
+    private boolean equalCoordinates(BoxCoordinates b1, BoxCoordinates b2) {
         return b1.getBottomX() == b2.getBottomX() && b1.getBottomY() == b2.getBottomY()
                 && b1.getTopX() == b2.getTopX() && b1.getTopY() == b2.getTopY();
     }
