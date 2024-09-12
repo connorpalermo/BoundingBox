@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Queue;
 
 /***
- * BoundingBox - the core logic for finding the minimum bounding boxes.
+ * MinBoundingBox - the core logic for finding the minimum bounding boxes.
  * @author cpalermo
  */
 public class MinBoundingBox {

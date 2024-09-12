@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 /**
- * MinBoundingBox - Entry point for processing input to find minimum bounding boxes.
+ * BoundingBox - Entry point for processing input to find minimum bounding boxes.
  */
 public class BoundingBox {
 

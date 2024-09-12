@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /***
- * BoxCoordinates - a DTO to simplify logic around MinBoundingBox start and end coordinates.
+ * BoxCoordinates - a DTO to simplify logic around BoundingBox start and end coordinates.
  */
 @Getter
 @Setter
