@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class MinBoundingBoxTest {
     private static final char[][] VALID_INPUT_ONE_MIN_BOX = {
@@ -56,10 +58,10 @@ public class MinBoundingBoxTest {
         List<BoxCoordinates> coordinates = minBoundingBox.process();
 
         Assertions.assertEquals(3, coordinates.size());
-        for(int i = 0; i < coordinates.size(); i++){
-            Assertions.assertTrue(equalCoordinates(
-                        expectedCoordinates.get(i), coordinates.get(i)));
-        }
+        IntStream.range(0,coordinates.size())
+                .forEach(i ->
+                Assertions.assertTrue(
+                        equalCoordinates(coordinates.get(i),expectedCoordinates.get(i))));
     }
 
     /**
@@ -92,10 +94,8 @@ public class MinBoundingBoxTest {
     @Test
     public void test_NoMinBoundingBox(){
         char[][] noMinBoxInput = new char[1000][1000];
-        for (int i = 0; i < 100; i++) {
-            for (int j = 0; j < 100; j++) {
-                noMinBoxInput[i][j] = '-';
-            }
+        for(char[] row : noMinBoxInput){
+            Arrays.fill(row,'-');
         }
         MinBoundingBox minBoundingBox = new MinBoundingBox(noMinBoxInput);
         List<BoxCoordinates> coordinates = minBoundingBox.process();
@@ -107,10 +107,8 @@ public class MinBoundingBoxTest {
     public void test_LargeBoundingBox() {
         BoxCoordinates coordinate = new BoxCoordinates(1,1,1000,1000);
         char[][] largeInput = new char[1000][1000];
-        for (int i = 0; i < 1000; i++) {
-            for (int j = 0; j < 1000; j++) {
-                largeInput[i][j] = '*';
-            }
+        for(char[] row : largeInput){
+            Arrays.fill(row, '*');
         }
         MinBoundingBox minBoundingBox = new MinBoundingBox(largeInput);
         List<BoxCoordinates> coordinates = minBoundingBox.process();
