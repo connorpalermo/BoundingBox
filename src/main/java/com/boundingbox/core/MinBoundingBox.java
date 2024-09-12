@@ -12,7 +12,6 @@ import java.util.stream.IntStream;
 
 /***
  * MinBoundingBox - the core logic for finding the minimum bounding boxes.
- * @author cpalermo
  */
 public class MinBoundingBox {
     private final char[][] input;
@@ -71,7 +70,7 @@ public class MinBoundingBox {
     }
 
     /**
-     *
+     * Run the BFS traversal from the starting point
      * @param input The char matrix input
      * @param row The integer row for the BFS starting point
      * @param col The integer column for the BFS starting point
@@ -108,7 +107,8 @@ public class MinBoundingBox {
     }
 
     /**
-     * Visits all valid neighbors for the current row and column
+     * Add all valid neighbors for the current row and column to the
+     * BFS Queue
      * @param input The char matrix input
      * @param row The current row
      * @param col The current column
