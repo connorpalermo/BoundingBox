@@ -42,7 +42,7 @@ Info logs have been switched to ***debug*** to meet the following requirement.
 (1,1)(2,2)
 ```
 
-Switch from debug to info to see output when running script.
+Switch from debug to info and rebuild the project to see output when running script.
 
 ## Dependencies
 

@@ -44,7 +44,7 @@ public class MinBoundingBoxTest {
         List<BoxCoordinates> coordinates = minBoundingBox.process();
 
         Assertions.assertEquals(1, coordinates.size());
-        Assertions.assertTrue(equalCoordinates(coordinates.get(0), coordinate),
+        Assertions.assertEquals(coordinates.get(0), coordinate,
                 () -> "expected: " + coordinate + ", actual: " + coordinates.get(0));
     }
 
@@ -59,8 +59,7 @@ public class MinBoundingBoxTest {
 
         Assertions.assertEquals(3, coordinates.size());
         for (int i = 0; i < coordinates.size(); i++) {
-            Assertions.assertTrue(
-                    equalCoordinates(coordinates.get(i), expectedCoordinates.get(i)),
+            Assertions.assertEquals(coordinates.get(i), expectedCoordinates.get(i),
                     "Mismatch at index " + i);
         }
     }
@@ -79,7 +78,7 @@ public class MinBoundingBoxTest {
         List<BoxCoordinates> coordinates = minBoundingBox.process();
 
         Assertions.assertEquals(1, coordinates.size());
-        Assertions.assertTrue(equalCoordinates(coordinates.get(0), coordinate),
+        Assertions.assertEquals(coordinates.get(0), coordinate,
                 () -> "expected: " + coordinate + ", actual: " + coordinates.get(0));
     }
 
@@ -90,7 +89,7 @@ public class MinBoundingBoxTest {
         List<BoxCoordinates> coordinates = minBoundingBox.process();
 
         Assertions.assertEquals(1, coordinates.size());
-        Assertions.assertTrue(equalCoordinates(coordinate, coordinates.get(0)),
+        Assertions.assertEquals(coordinates.get(0), coordinate,
                 () -> "expected: " + coordinate + ", actual: " + coordinates.get(0));
     }
 
@@ -116,7 +115,7 @@ public class MinBoundingBoxTest {
         MinBoundingBox minBoundingBox = new MinBoundingBox(largeInput);
         List<BoxCoordinates> coordinates = minBoundingBox.process();
         Assertions.assertEquals(1, coordinates.size());
-        Assertions.assertTrue(equalCoordinates(coordinate, coordinates.get(0)),
+        Assertions.assertEquals(coordinates.get(0), coordinate,
                 () -> "expected: " + coordinate + ", actual: " + coordinates.get(0));
     }
 
@@ -128,8 +127,4 @@ public class MinBoundingBoxTest {
         Assertions.assertEquals(0, coordinates.size());
     }
 
-    private boolean equalCoordinates(BoxCoordinates b1, BoxCoordinates b2) {
-        return b1.getBottomX() == b2.getBottomX() && b1.getBottomY() == b2.getBottomY()
-                && b1.getTopX() == b2.getTopX() && b1.getTopY() == b2.getTopY();
-    }
 }

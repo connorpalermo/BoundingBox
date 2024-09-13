@@ -34,7 +34,7 @@ public class BoundingBox {
                     .toArray(char[][]::new);
             logger.debug("processed file successfully");
 
-            MinBoundingBox bound = new com.boundingbox.core.MinBoundingBox(lines);
+            MinBoundingBox bound = new MinBoundingBox(lines);
             bound.process().forEach(box -> System.out.println(box.toString()));
         } catch (IOException e) {
             logger.error("IOException occurred: {}", e.getMessage());
