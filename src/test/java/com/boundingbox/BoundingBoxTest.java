@@ -14,13 +14,9 @@ import java.io.PrintStream;
 public class BoundingBoxTest {
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
-    @BeforeEach
-    public void setUp() {
-        System.setOut(new PrintStream(outputStreamCaptor));
-    }
-
     @Test
     public void testProcessGroups() {
+        System.setOut(new PrintStream(outputStreamCaptor));
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("groups.txt")) {
             assertNotNull(inputStream, "Resource not found");
             BoundingBox.process(inputStream);
