@@ -27,7 +27,7 @@ public class MinBoundingBox {
     }
 
     /**
-     * Processes the input matrix
+     * Processes the input matrix.
      *
      * @return List of minimum bounding box coordinates
      */
@@ -40,23 +40,27 @@ public class MinBoundingBox {
 
     /**
      * Extracts the minimum bounding boxes using the
-     * Breadth First Search (BFS) Algorithm
+     * Breadth First Search (BFS) Algorithm.
      *
      * @param input The char matrix input
      */
     private void extractMinBoundingBoxes(char[][] input) {
+
         // Traverse each cell in the input matrix
         // If a '*' is found, start BFS to find the size of current box
         for (int row = 0; row < input.length; row++) {
             for (int col = 0; col < input[row].length; col++) {
                 if (input[row][col] == '*') {
+
                     // start BFS from the current cell.
                     logger.debug("starting BFS from coordinates ({}, {})", row, col);
                     BoxCoordinates coordinates = new BoxCoordinates(row, col,
                             row, col);
                     int size = traverse(input, row, col, coordinates);
+
                     // increment by 1 because input is one-indexed
                     coordinates.incrementByOffset(INDEX_OFFSET);
+
                     // update the coordinates list based off of the minBounding value
                     if (size < minBounding) {
                         minBounding = size;
@@ -71,7 +75,7 @@ public class MinBoundingBox {
     }
 
     /**
-     * Run the BFS traversal from the starting point
+     * Run the BFS traversal from the starting point.
      *
      * @param input       The char matrix input
      * @param row         The integer row for the BFS starting point
@@ -82,6 +86,7 @@ public class MinBoundingBox {
     private int traverse(char[][] input, int row, int col, BoxCoordinates coordinates) {
         Queue<int[]> bfs = new LinkedList<>();
         bfs.add(new int[]{row, col});
+
         // mark as X to signify this cell was visited and will not
         // be visited again
         input[row][col] = 'X';
@@ -110,7 +115,7 @@ public class MinBoundingBox {
 
     /**
      * Add all valid neighbors for the current row and column to the
-     * BFS Queue
+     * BFS Queue.
      *
      * @param input The char matrix input
      * @param row   The current row
