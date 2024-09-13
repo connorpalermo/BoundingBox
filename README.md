@@ -52,9 +52,9 @@ Switch from debug to info to see output when running script.
 
 ## Future Considerations
 
-**Input Validation**: Because the prompt explicitly listed that files will be in a certain format, we do not need
+**Input Validation**: Because the prompt explicitly states that files will be in a certain format, we do not need
 validation here. However, if file formats and contents differ we could implement input validation (if board size is 0,
-if file is empty, etc).
+if file contents is invalid, etc).
 
 **Set Up Continuous Integration**: We could set up continuous integration
 through [GitHub Actions](https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-java-with-maven) (
