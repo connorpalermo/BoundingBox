@@ -46,7 +46,7 @@ Switch from debug to info and rebuild the project to see output when running scr
 
 ## Dependencies
 
-**Java**: Be sure to have Java 8+ installed.
+**Java**: Be sure to have Java 11+ installed.
 
 **Maven**: Be sure to have Maven 3+ installed.
 
